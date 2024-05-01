@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://mdykw81y8y5r"]
+
+[ext_resource type="Script" path="res://scenes/balatro.gd" id="1_nmjk1"]
+[ext_resource type="PackedScene" uid="uid://c6i8raxai3e6s" path="res://scenes/card.tscn" id="1_xr0n5"]
+[ext_resource type="Texture2D" uid="uid://6on2uo28gah7" path="res://visuals/Tiles_A_white.png" id="2_1wup7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7xbm"]
+size = Vector2(1200, 250)
+
+[sub_resource type="Gradient" id="Gradient_uroo7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_88nhh"]
+gradient = SubResource("Gradient_uroo7")
+width = 1200
+height = 250
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6d0hd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4ely"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i5nlf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4rv71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_diaxx"]
+
+[node name="Balatro" type="Control" node_paths=PackedStringArray("deck")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nmjk1")
+card_scene = ExtResource("1_xr0n5")
+deck = NodePath("Deck")
+card_offset_x = 120.0
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(976, 234)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_t7xbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = SubResource("GradientTexture2D_88nhh")
+
+[node name="Deck" type="Button" parent="."]
+custom_minimum_size = Vector2(152, 207)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6d0hd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h4ely")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_i5nlf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4rv71")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_diaxx")
+
+[node name="TextureRect" type="TextureRect" parent="Deck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1wup7")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 100
+
+[node name="Hand" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="pressed" from="Deck" to="." method="_on_button_pressed"]

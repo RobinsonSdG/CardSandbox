@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpx7k01yoxbev"]
+
+[ext_resource type="PackedScene" uid="uid://c6i8raxai3e6s" path="res://scenes/card.tscn" id="1_ca4cf"]
+
+[node name="Node" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Card" parent="Control" instance=ExtResource("1_ca4cf")]
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Card2" parent="Control2" instance=ExtResource("1_ca4cf")]
+offset_left = 699.0
+offset_top = 86.0
+offset_right = 851.0
+offset_bottom = 293.0
+spring = 3000.0

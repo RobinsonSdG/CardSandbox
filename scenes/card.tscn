@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6i8raxai3e6s"]
+
+[ext_resource type="Script" path="res://scenes/card.gd" id="1_hm270"]
+[ext_resource type="Shader" path="res://shaders/2D-perspective.gdshader" id="1_iqmpv"]
+[ext_resource type="Texture2D" uid="uid://6on2uo28gah7" path="res://visuals/Tiles_A_white.png" id="3_awpe3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfnnn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ym63"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hm8ox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faw0x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wjm7b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdp22"]
+resource_local_to_scene = true
+shader = ExtResource("1_iqmpv")
+shader_parameter/rect_size = Vector2(152, 207)
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuur8"]
+size = Vector2(124, 170)
+
+[node name="Card" type="Button"]
+custom_minimum_size = Vector2(152, 207)
+offset_right = 152.0
+offset_bottom = 207.0
+pivot_offset = Vector2(76, 103.5)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rfnnn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0ym63")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hm8ox")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_faw0x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wjm7b")
+script = ExtResource("1_hm270")
+spring = 600.0
+
+[node name="Shadow" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0.176471)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 21.0
+offset_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_awpe3")
+expand_mode = 1
+
+[node name="CardTexture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_sdp22")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_awpe3")
+expand_mode = 1
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(76, 102)
+shape = SubResource("RectangleShape2D_cuur8")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

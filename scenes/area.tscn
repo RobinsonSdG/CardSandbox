@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddt3rk15ekry"]
+
+[ext_resource type="Texture2D" uid="uid://b1mciaxe2sn7h" path="res://visuals/Card_Sharp.webp" id="2_f5x30"]
+
+[sub_resource type="GDScript" id="GDScript_ttavw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_say0f"]
+size = Vector2(112, 128)
+
+[node name="area" type="Area2D"]
+script = SubResource("GDScript_ttavw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_say0f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_f5x30")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
